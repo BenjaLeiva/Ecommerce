@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chile Mangas - Prototipo eCommerce</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="top-bar">
+            <span>📍 Local Físico: Vicuña Mackenna #687, Local 22, Quilpué</span>
+            <span>🚚 Despachos económicos a todo Chile vía Blue Express</span>
+            <button type="button" class="top-legal-btn" id="openLegalBtn">⚖️ Marco Legal y Privacidad</button>
+        </div>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Chile<span>Mangas</span></h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar por título, autor o editorial...">
+                <button type="button" id="searchBtn" aria-label="Buscar"><i data-lucide="search"></i></button>
+            </div>
+            <div class="user-actions">
+                <div class="loyalty-badge" title="Puntos acumulados por compras web">
+                    <i data-lucide="award"></i> <span id="userPoints">150</span> pts
+                </div>
+                <button type="button" class="cart-btn" id="openCartBtn" aria-label="Abrir carrito">
+                    <i data-lucide="shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Pedido Abierto Argentina &amp; Importaciones</h2>
+            <p>Reserva cualquier manga o cómic de bodegas internacionales abonando solo el 50% al momento del encargo.</p>
+            <a href="#catalogo" class="btn-primary">Explorar Catálogo</a>
+        </div>
+    </section>
+
+    <main class="main-container" id="catalogo">
+        <aside class="sidebar">
+            <h3>Filtros de Búsqueda</h3>
+
+            <div class="filter-group">
+                <h4>País / Origen</h4>
+                <label><input type="checkbox" value="Argentina" class="filter-origin"> Argentina</label>
+                <label><input type="checkbox" value="España" class="filter-origin"> España</label>
+                <label><input type="checkbox" value="Chile" class="filter-origin"> Chile</label>
+                <label><input type="checkbox" value="México" class="filter-origin"> México</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Modalidad de Compra</h4>
+                <label><input type="checkbox" value="stock" class="filter-type"> Entrega Inmediata (Stock)</label>
+                <label><input type="checkbox" value="reserva" class="filter-type"> Importación / Encargo (50% Abono)</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Editorial</h4>
+                <select id="editorialSelect">
+                    <option value="">Todas las editoriales</option>
+                    <option value="Ivrea Argentina">Ivrea Argentina</option>
+                    <option value="Norma Editorial">Norma Editorial</option>
+                    <option value="Panini">Panini</option>
+                    <option value="Planeta">Planeta</option>
+                </select>
+            </div>
+
+            <div class="filter-actions">
+                <button type="button" class="btn-primary btn-full" id="applyFiltersBtn">Aplicar filtros</button>
+                <button type="button" class="btn-secondary btn-full" id="clearFiltersBtn">Limpiar</button>
+            </div>
+        </aside>
+
+        <section class="products-section">
+            <div class="products-header">
+                <h3>Catálogo de Mangas y Cómics</h3>
+                <span id="productResultsCount">Cargando productos...</span>
+            </div>
+            <div class="products-grid" id="productsGrid">
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-modal-overlay" id="legalModal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Marco Legal, Privacidad y Garantías</h2>
+                <button type="button" class="close-btn" id="closeLegalBtn">&times;</button>
+            </div>
+            <div class="cart-body legal-modal-body">
+                <h4>Protección de Datos Personales (Ley N° 19.628)</h4>
+                <p>Los datos requeridos en el flujo de compra se utilizan exclusivamente para gestionar envíos, reservas internacionales y retiros en sucursal, bajo protocolos de seguridad y sin cesión no autorizada.</p>
+
+                <h4>Derechos del Consumidor y Garantía (Ley N° 19.496 / Ley N° 21.081)</h4>
+                <p>Los ejemplares cuentan con garantía legal de 6 meses ante fallas de origen (páginas faltantes, defectos de impresión o encuadernación). En compras de libros y publicaciones periódicas aplica la exclusión de retracto unilateral cuando corresponda según normativa vigente.</p>
+
+                <h4>Reservas e Importaciones (50% de Abono)</h4>
+                <p>Si un título reservado no dispone de stock en la editorial de origen, se gestiona la devolución íntegra del abono o alternativa acordada con el cliente.</p>
+            </div>
+            <div class="cart-footer">
+                <button type="button" class="btn-primary" id="acceptLegalBtn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Tu Carrito de Compras</h2>
+                <button type="button" class="close-btn" id="closeCartBtn">&times;</button>
+            </div>
+            <div class="cart-body">
+                <div id="cartItemsContainer">
+                </div>
+
+                <div class="shipping-section">
+                    <h4>Opciones de Entrega / Despacho</h4>
+                    <label class="shipping-option">
+                        <input type="radio" name="shipping" value="blueexpress" checked>
+                        <div>
+                            <strong>Blue Express (Recomendado)</strong>
+                            <p>Despacho económico a domicilio o Punto Blue. $2.990</p>
+                        </div>
+                    </label>
+                    <label class="shipping-option">
+                        <input type="radio" name="shipping" value="chilexpress">
+                        <div>
+                            <strong>Chilexpress (Por Pagar)</strong>
+                            <p>Envío a sucursal o domicilio (pago en destino).</p>
+                        </div>
+                    </label>
+                    <label class="shipping-option">
+                        <input type="radio" name="shipping" value="retiro">
+                        <div>
+                            <strong>Retiro en Tienda Física (Quilpué)</strong>
+                            <p>Sin costo. Vicuña Mackenna #687, Local 22.</p>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Total Productos en Stock:</span>
+                        <span id="summaryStockTotal">$0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Abono Requerido (50% Importaciones):</span>
+                        <span id="summaryDepositTotal">$0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Costo de Envío Estimado:</span>
+                        <span id="summaryShippingCost">$2.990</span>
+                    </div>
+                    <hr>
+                    <div class="summary-row total-row">
+                        <strong>Total a Pagar Ahora:</strong>
+                        <strong id="summaryPayNow">$0</strong>
+                    </div>
+                    <p class="summary-note" id="pendingBalanceNote" style="display:none;">
+                        * El saldo pendiente de importaciones se cancelará cuando los productos arriben a tienda.
+                    </p>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <button type="button" class="btn-checkout" id="checkoutBtn">Pago Seguro</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

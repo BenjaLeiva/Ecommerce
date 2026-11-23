@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pago Seguro - Chile Mangas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <span>📍 Local Físico: Vicuña Mackenna #687, Local 22, Quilpué</span>
+            <span>🔒 Pasarela Simulada - Prototipo Académico</span>
+        </div>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Chile<span>Mangas</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="payment-page-container">
+        <section class="payment-card" id="paymentStatusCard">
+            <i data-lucide="shield-check" class="payment-icon"></i>
+            <h2 id="paymentHeading">Pago Procesado con Éxito</h2>
+            <p class="payment-subtitle" id="paymentSubheading">
+                Tu orden <strong>#<span id="orderCode">---</span></strong> ha sido registrada en la simulación de pago.
+            </p>
+
+            <div class="payment-details" id="orderDetailsBox">
+            </div>
+
+            <div class="compliance-box">
+                <p>🔒 <strong>Protección de Datos (Ley N° 19.628):</strong> Tratamiento de datos orientado a la gestión del pedido y notificación de despacho/retiro.</p>
+                <p>📄 <strong>Derechos del Consumidor (Ley N° 19.496):</strong> Garantía legal de 6 meses por fallas de origen e información clara sobre condiciones de reserva.</p>
+            </div>
+
+            <div class="payment-actions">
+                <a href="index.html" class="btn-primary">Volver al Catálogo</a>
+                <button type="button" class="btn-secondary" onclick="window.close()">Cerrar Pestaña</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/pago.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
