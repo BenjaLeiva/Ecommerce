@@ -245,13 +245,17 @@ function setupEventListeners() {
             ...currentOrderSummary
         };
 
-        localStorage.setItem('chileMangasLastOrder', JSON.stringify(orderPayload));
+        try {
+            localStorage.setItem('chileMangasLastOrder', JSON.stringify(orderPayload));
+            sessionStorage.setItem('chileMangasLastOrder', JSON.stringify(orderPayload));
+        } catch (err) {
+            console.warn('No se pudo guardar en almacenamiento local:', err);
+        }
 
         cart = [];
         updateCartUI();
         cartModal.style.display = 'none';
 
-        // Ahora abre primero el formulario interactivo de pago
-        window.open('checkout.html', '_blank', 'noopener');
+        window.location.href = 'checkout.html';
     });
 }
