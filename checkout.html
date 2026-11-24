@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago Segura - Chile Mangas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <span>📍 Local Físico: Vicuña Mackenna #687, Local 22, Quilpué</span>
+            <span>🔒 Pasarela Simulada - Entorno de Pruebas</span>
+        </div>
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Chile<span>Mangas</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="payment-page-container">
+        <div class="demo-warning-banner">
+            <i data-lucide="alert-triangle"></i>
+            <div>
+                <strong>Modo Simulación Académica:</strong> Los campos a continuación son meramente ilustrativos. No ingrese datos bancarios ni personales reales. No se realizará ningún cobro.
+            </div>
+        </div>
+
+        <section class="payment-card">
+            <h2>Ingreso de Datos de Despacho y Pago</h2>
+            <p class="payment-subtitle">Complete la información para simular la transacción segura.</p>
+
+            <form id="checkoutForm" onsubmit="event.preventDefault(); proceedToFinalPayment();">
+                
+                <div class="form-section">
+                    <h3><i data-lucide="map-pin"></i> Dirección de Envío</h3>
+                    
+                    <div class="form-group">
+                        <label for="address">Dirección (Calle y Número)</label>
+                        <input type="text" id="address" placeholder="Ej: Av. Diego Portales 1234">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="region">Región</label>
+                            <select id="region">
+                                <option value="">Seleccione Región</option>
+                                <option value="Valparaíso" selected>Región de Valparaíso</option>
+                                <option value="Metropolitana">Región Metropolitana</option>
+                                <option value="Biobío">Región del Biobío</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="comuna">Comuna</label>
+                            <select id="comuna">
+                                <option value="">Seleccione Comuna</option>
+                                <option value="Quilpué" selected>Quilpué</option>
+                                <option value="Viña del Mar">Viña del Mar</option>
+                                <option value="Valparaíso">Valparaíso</option>
+                                <option value="Villa Alemana">Villa Alemana</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dept">N° Departamento / Casa (Opcional)</label>
+                        <input type="text" id="dept" placeholder="Ej: Depto 402, Torre B">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3><i data-lucide="credit-card"></i> Datos de Pago (Tarjeta)</h3>
+                    
+                    <div class="form-group">
+                        <label for="cardNumber">Número de Tarjeta</label>
+                        <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardExp">Fecha de Vencimiento</label>
+                            <input type="text" id="cardExp" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCvv">CVV / CVC</label>
+                            <input type="password" id="cardCvv" placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen Rápido -->
+                <div class="checkout-summary-mini">
+                    <span>Monto a procesar en simulación:</span>
+                    <strong id="checkoutPayAmount">$0</strong>
+                </div>
+
+                <div class="payment-actions">
+                    <button type="submit" class="btn-primary btn-full">Confirmar Pago</button>
+                    <button type="button" class="btn-secondary btn-full" onclick="window.close()">Cancelar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/checkout.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

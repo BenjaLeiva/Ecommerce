@@ -193,7 +193,6 @@ function updateCartUI() {
 }
 
 function setupEventListeners() {
-    // Modal Apartado Legal
     const legalModal = document.getElementById('legalModal');
     document.getElementById('openLegalBtn').addEventListener('click', () => {
         legalModal.style.display = 'flex';
@@ -205,7 +204,6 @@ function setupEventListeners() {
         legalModal.style.display = 'none';
     });
 
-    // Abrir/Cerrar Carrito
     const cartModal = document.getElementById('cartModal');
     document.getElementById('openCartBtn').addEventListener('click', () => {
         cartModal.style.display = 'flex';
@@ -214,7 +212,6 @@ function setupEventListeners() {
         cartModal.style.display = 'none';
     });
 
-    // Cerrar modales al hacer clic fuera del cuadro
     [legalModal, cartModal].forEach(overlay => {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
@@ -223,12 +220,10 @@ function setupEventListeners() {
         });
     });
 
-    // Cambios en Radio de Envío
     document.querySelectorAll('input[name="shipping"]').forEach(radio => {
         radio.addEventListener('change', updateCartUI);
     });
 
-    // Filtros: botón aplicar, limpiar y actualización directa
     document.getElementById('applyFiltersBtn').addEventListener('click', applyFilters);
     document.getElementById('clearFiltersBtn').addEventListener('click', clearFilters);
     document.getElementById('searchBtn').addEventListener('click', applyFilters);
@@ -238,7 +233,6 @@ function setupEventListeners() {
         cb.addEventListener('change', applyFilters);
     });
 
-    // Pago Seguro -> Abre pestaña nueva con el mensaje de pago
     document.getElementById('checkoutBtn').addEventListener('click', () => {
         if (cart.length === 0) {
             alert('El carrito está vacío.');
@@ -257,6 +251,7 @@ function setupEventListeners() {
         updateCartUI();
         cartModal.style.display = 'none';
 
-        window.open('pago.html', '_blank', 'noopener');
+        // Ahora abre primero el formulario interactivo de pago
+        window.open('checkout.html', '_blank', 'noopener');
     });
 }

@@ -6,7 +6,7 @@ const productsData = [
         editorial: "Ivrea Argentina",
         country: "Argentina",
         price: 9500,
-        type: "reserva", // 'stock' o 'reserva'
+        type: "reserva",
         estimatedArrival: "3 a 4 semanas",
         image: "https://cdnx.jumpseller.com/shazam-online/image/41870091/chainsaw_man_15_ivrea.jpg?1699466531",
         stockCount: 0

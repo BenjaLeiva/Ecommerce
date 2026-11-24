@@ -19,9 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         </li>
     `).join('');
 
+    const addressInfo = order.shippingAddress 
+        ? `<p><strong>Dirección de entrega:</strong> ${order.shippingAddress}</p>`
+        : '';
+
     detailsBox.innerHTML = `
         <p><strong>Fecha y hora:</strong> ${order.createdAt}</p>
         <p><strong>Entrega seleccionada:</strong> ${order.shippingLabel}</p>
+        ${addressInfo}
         <ul>${itemsHtml}</ul>
         <p><strong>Total pagado en simulación:</strong> $${order.payNow.toLocaleString('es-CL')}</p>
         ${order.hasReserva ? '<p><small>* El saldo restante de importaciones se paga al llegar el pedido a tienda.</small></p>' : ''}
